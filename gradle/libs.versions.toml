@@ -1,0 +1,59 @@
+[versions]
+agp = "8.7.3"
+kotlin = "2.1.0"
+
+android-jvm = "17"
+android-compileSdk = "35"
+android-targetSdk = "35"
+android-minSdk = "26"
+
+androidx-core-splashscreen = "1.0.1"
+androidx-core-ktx = "1.15.0"
+androidx-lifecycle-runtime-ktx = "2.8.7"
+
+androidx-appcompat = "1.7.0"
+androidx-material = "1.10.0"
+
+kotlin-serialization-json = "1.7.3"
+
+coil-kt = "3.0.4"
+koin = "4.0.0"
+
+ksp = "2.1.0-1.0.29"
+
+spotless = "6.5.1"
+
+[plugins]
+# Android Gradle Plugin
+agp-library = { id = "com.android.library", version.ref = "agp" }
+agp-application = { id = "com.android.application", version.ref = "agp" }
+
+# Kotlin
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+
+anemo-application = { id = "anemo.application", version = "unspecified" }
+anemo-library = { id = "anemo.library", version = "unspecified" }
+
+[libraries]
+
+# AndroidX Core
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidx-core-splashscreen" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
+
+# AndroidX Lifecycle
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime-ktx" }
+
+# AndroidX UI
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
+
+material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
+
+# Gradle Plugins
+android-gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+compose-gradle = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradle = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }

@@ -1,1 +1,0 @@
-Una aplicación de utilidad de almacenamiento local privado para Android.
