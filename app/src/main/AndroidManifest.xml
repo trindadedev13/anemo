@@ -3,138 +3,137 @@
   ~ SPDX-License-Identifier: GPL-3.0-only
   -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="exe.bbllw8.anemo">
+  xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+  <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
-    <application
-        android:allowBackup="true"
-        android:allowClearUserData="false"
-        android:appCategory="productivity"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        tools:targetApi="s">
+  <application
+    android:allowBackup="true"
+    android:allowClearUserData="false"
+    android:appCategory="productivity"
+    android:dataExtractionRules="@xml/data_extraction_rules"
+    android:fullBackupContent="@xml/backup_rules"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:supportsRtl="true"
+    tools:targetApi="s">
 
-        <!-- Shell -->
+    <!-- Shell -->
 
-        <activity
-            android:name=".shell.LauncherActivity"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:stateNotNeeded="true"
-            android:theme="@android:style/Theme.NoDisplay">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+    <activity
+      android:name=".shell.LauncherActivity"
+      android:excludeFromRecents="true"
+      android:exported="true"
+      android:stateNotNeeded="true"
+      android:theme="@android:style/Theme.NoDisplay">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
 
-            <meta-data
-                android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts" />
-        </activity>
+      <meta-data
+        android:name="android.app.shortcuts"
+        android:resource="@xml/shortcuts" />
+    </activity>
 
-        <!-- Configuration -->
+    <!-- Configuration -->
 
-        <activity
-            android:name=".config.ConfigurationActivity"
-            android:exported="true"
-            android:label="@string/configuration_label"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
+    <activity
+      android:name=".config.ConfigurationActivity"
+      android:exported="true"
+      android:label="@string/configuration_label"
+      android:theme="@style/AppTheme">
+      <intent-filter>
+        <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+      </intent-filter>
+    </activity>
 
-        <!-- Lock -->
+    <!-- Lock -->
 
-        <service
-            android:name=".lock.AutoLockJobService"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+    <service
+      android:name=".lock.AutoLockJobService"
+      android:exported="false"
+      android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <service
-            android:name=".lock.LockTileService"
-            android:exported="true"
-            android:icon="@drawable/ic_key_tile"
-            android:label="@string/tile_title"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE" />
-            </intent-filter>
-        </service>
+    <service
+      android:name=".lock.LockTileService"
+      android:exported="true"
+      android:icon="@drawable/ic_key_tile"
+      android:label="@string/tile_title"
+      android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+      <intent-filter>
+        <action android:name="android.service.quicksettings.action.QS_TILE" />
+      </intent-filter>
+    </service>
 
-        <!-- Password -->
+    <!-- Password -->
 
-        <activity
-            android:name=".lock.UnlockActivity"
-            android:excludeFromRecents="true"
-            android:label="@string/password_label"
-            android:theme="@style/DialogTheme" />
+    <activity
+      android:name=".lock.UnlockActivity"
+      android:excludeFromRecents="true"
+      android:label="@string/password_label"
+      android:theme="@style/DialogTheme" />
 
-        <!-- Provider -->
+    <!-- Provider -->
 
-        <provider
-            android:name=".documents.provider.AnemoDocumentProvider"
-            android:authorities="exe.bbllw8.anemo.documents"
-            android:enabled="true"
-            android:exported="true"
-            android:grantUriPermissions="true"
-            android:permission="android.permission.MANAGE_DOCUMENTS">
+    <provider
+      android:name=".documents.provider.AnemoDocumentProvider"
+      android:authorities="exe.bbllw8.anemo.documents"
+      android:enabled="true"
+      android:exported="true"
+      android:grantUriPermissions="true"
+      android:permission="android.permission.MANAGE_DOCUMENTS">
 
-            <intent-filter>
-                <action android:name="android.content.action.DOCUMENTS_PROVIDER" />
-            </intent-filter>
-        </provider>
+      <intent-filter>
+        <action android:name="android.content.action.DOCUMENTS_PROVIDER" />
+      </intent-filter>
+    </provider>
 
-        <!-- Receiver -->
+    <!-- Receiver -->
 
-        <activity
-            android:name=".documents.receiver.ReceiverActivity"
-            android:configChanges=""
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:label="@string/receiver_label"
-            android:stateNotNeeded="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="application/*" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="audio/*" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="image/*" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="video/*" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/*" />
-            </intent-filter>
-        </activity>
-    </application>
+    <activity
+      android:name=".documents.receiver.ReceiverActivity"
+      android:configChanges=""
+      android:excludeFromRecents="true"
+      android:exported="true"
+      android:label="@string/receiver_label"
+      android:stateNotNeeded="true"
+      android:theme="@android:style/Theme.Translucent.NoTitleBar">
+      <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="application/*" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="audio/*" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="image/*" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="video/*" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="text/*" />
+      </intent-filter>
+    </activity>
+  </application>
 
-    <queries>
-        <package android:name="com.android.documentsui" />
-        <package android:name="com.google.android.documentsui" />
-    </queries>
+  <queries>
+    <package android:name="com.android.documentsui" />
+    <package android:name="com.google.android.documentsui" />
+  </queries>
 </manifest>
